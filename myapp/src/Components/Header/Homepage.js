@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import './Homepage.css';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
-export default function Homepage() {
+import './Homepage.css';
+import Navbar from './Navbar';
+
+function Homepage() {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const gmail = "reddiprakasht1122@gmail.com";
-    const phoneNumber = "8465042609"
+    const phoneNumber = "8465042609";
 
     const handleCopyEmail = () => {
         navigator.clipboard.writeText(gmail);
@@ -14,31 +17,31 @@ export default function Homepage() {
     return (
         <div className='About container'>
             <div className='About-content'>
-                <h1>HI, I'm <br/> Reddi Prakash Tharigonda</h1>
+                <h1>HI, I'm <br /> Reddi Prakash Tharigonda</h1>
                 <h3>Frontend Developer</h3>
                 <p>
-                    Hello! I’m a dedicated front-end developer specializing in ReactJS, with a strong foundation in HTML, CSS, and JavaScript. 
-                    I have a passion for crafting dynamic and responsive web applications that deliver exceptional user experiences. 
-                    My expertise extends to utilizing Bootstrap for efficient styling and design, ensuring that my projects are not only functional 
-                    but also visually appealing. I’m also experienced in version control systems, which allows me to collaborate effectively 
-                    and manage project workflows seamlessly. Whether I’m building a new feature or optimizing existing code, 
+                    Hello! I’m a dedicated front-end developer specializing in ReactJS, with a strong foundation in HTML, CSS, and JavaScript.
+                    I have a passion for crafting dynamic and responsive web applications that deliver exceptional user experiences.
+                    My expertise extends to utilizing Bootstrap for efficient styling and design, ensuring that my projects are not only functional
+                    but also visually appealing. I’m also experienced in version control systems, which allows me to collaborate effectively
+                    and manage project workflows seamlessly. Whether I’m building a new feature or optimizing existing code,
                     I’m committed to continuous learning and improvement. Let’s work together to bring your vision to life!
                 </p>
-                
+
                 <div className='row btn-box'>
                     <div className='col-12 col-sm-4 mb-2'>
                         <a href='https://in.linkedin.com/' className='btn btn-primary w-100'>Hire Me</a>
                     </div>
                     <div className='col-12 col-sm-4 mb-2'>
-                        <a 
-                            className='btn btn-secondary w-100' 
+                        <a
+                            className='btn btn-secondary w-100'
                             onClick={() => setIsPopupOpen(true)}
                         >
                             Let’s talk
                         </a>
                     </div>
                     <div className='col-12 col-sm-4 mb-2'>
-                        <a href='#' className='btn btn-success w-100'>See My Work</a> 
+                        <Link to='/landing' className='btn btn-success w-100'>See My Work</Link>
                     </div>
                 </div>
 
@@ -55,3 +58,16 @@ export default function Homepage() {
         </div>
     );
 }
+
+function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path='/' element={<Homepage />} />
+                <Route path='/landing' element={<Navbar />} />
+            </Routes>
+        </BrowserRouter>
+    );
+}
+
+export default App;
